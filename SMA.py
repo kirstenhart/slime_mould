@@ -67,7 +67,7 @@ class BaseSMA(Root):
 
     def train(self):
         pop = [self.create_solution() for _ in range(self.pop_size)]
-        print(pop.shape)
+        #print(pop.shape)
         pop, g_best = self.get_sorted_pop_and_global_best_solution(pop, self.ID_FIT, self.ID_MIN_PROB)      # Eq.(2.6)
 
         for epoch in range(self.epoch):

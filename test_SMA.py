@@ -68,16 +68,16 @@ problem_size = 100
 
 ## Setting parameters
 obj_func = func_ackley
-verbose = True
+verbose = False
 epoch = 1000
 pop_size = 50
 
-md1 = BaseSMA(obj_func, lb, ub, problem_size, verbose, epoch, pop_size)
-best_pos1, best_fit1, list_loss1 = md1.train()
+#md1 = BaseSMA(obj_func, lb, ub, problem_size, verbose, epoch, pop_size)
+#best_pos1, best_fit1, list_loss1 = md1.train()
 # return : the global best solution, the fitness of global best solution and the loss of training process in each epoch/iteration
-print(md1.solution[0])
-print(md1.solution[1])
-print(md1.loss_train)
+#print(md1.solution[0])
+#print(md1.solution[1])
+#print(md1.loss_train)
 
 md2 = OriginalSMA(obj_func, lb, ub, problem_size, verbose, epoch, pop_size)
 best_pos2, best_fit2, list_loss2 = md2.train()
