@@ -1,7 +1,20 @@
 # -*- coding: utf-8 -*-
 
 # Creates plot of Region and Planned Path
-
+# 
+# To test code, just run "plot()" 
+# x1,x2 are set to default values
+# function set to Ackley by default
+#
+# To run real values run:
+# plot(x1,x2,f)
+# f = local min function, values below
+# LocMinFuncs.ackley
+#            .bukin6
+#            .crossit
+#            .drop
+#            .egg
+#
 import numpy as np
 import matplotlib.pyplot as plt
 import LocMinFuncs
@@ -30,7 +43,7 @@ def get_plot(x1,x2, y, Y):
     # fig = plt.figure()
     ax = plt.axes(projection='3d')
     #First plot the loc min func
-    ax.contour3D(x1, x2, y, 25, cmap='spring')
+    ax.contour3D(x1, x2, y, 50, cmap='spring')
     # Second, plot the scatter of UAV path.
     ax.scatter(x1,x2,Y,c='b')#,cmap='Blues')
         #axis labels
@@ -38,7 +51,7 @@ def get_plot(x1,x2, y, Y):
     ax.set_ylabel('x1')
     ax.set_zlabel('y')
     
-def plot(x1 = np.linspace(-40,40,100), x2 = np.linspace(-40,20,100), f = LocMinFuncs.ackley):
+def plot(x1 = np.linspace(-5,5,500), x2 = np.linspace(-5,2.5,500), f = LocMinFuncs.ackley):
     #initialize test values and function
     # x1 = np.linspace(-40,40,100) #1x40
     # x2 = np.linspace(-40,20,100) #1x40
@@ -50,3 +63,4 @@ def plot(x1 = np.linspace(-40,40,100), x2 = np.linspace(-40,20,100), f = LocMinF
     Y = loc_min_func(x1,x2,f)
     #create plot
     get_plot(x1,x2, y, Y)
+    
