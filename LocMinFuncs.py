@@ -5,7 +5,7 @@
 import numpy as np
 import math
 
-
+#Ackley function for x1,x2 ranges -40 to 40
 def ackley(args):
     # """Ackley function
 
@@ -20,6 +20,7 @@ def ackley(args):
     n = float(len(args))
     return -20.0*np.exp(-0.2*np.sqrt(first_sum/n)) - np.exp(second_sum/n) + 20.0 + np.e
 
+#Bukin function for x1 ranges [-3 -> 3], x2 [-5->-15]
 def bukin6(args):
     x1,x2 = args
     term1 = 100 * np.sqrt(abs(x2 - 0.01*x1**2))
@@ -28,8 +29,8 @@ def bukin6(args):
     y = term1 + term2;
     return y
 
+# corss-in-tray for x1,x2 ranges [-10->10]
 def crossit(args):
-    
     x1,x2 = args
     fact1 = np.sin(x1)*np.sin(x2)
     fact2 = np.exp(abs(100 - np.sqrt(x1**2+x2**2)/np.pi))
@@ -38,6 +39,7 @@ def crossit(args):
     
     return y
 
+# drop-wave function for ranges x1 [-5->5], x2 [-2->2]
 def drop(args):
     x1,x2 = args
     
@@ -47,6 +49,7 @@ def drop(args):
     y = -frac1/frac2
     return y
 
+#egg-holder function for ranges x1,x2 [-600:600]
 def egg(args):
     x1,x2 = args
      
@@ -56,5 +59,5 @@ def egg(args):
     y = term1 + term2
     return y
 
-a = np.array([0.1, 0.1])
-print(egg(a))
+# a = np.array([0.1, 0.1])
+# print(egg(a))
