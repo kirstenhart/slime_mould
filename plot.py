@@ -21,11 +21,11 @@ import LocMinFuncs
 
 
 #create grid of loc min function
-def get_grid(x1,x2,f):
+def get_grid(x1 = np.linspace(-5,5,21), x2 = np.linspace(-5,2.5,21), f = LocMinFuncs.ackley):
     y = []
     for x_1 in x1:
         for x_2 in x2:
-            y.append(f((x_1,x_2)))
+            y.append(f((x_1,x_2))) 
     y = np.array(y).reshape(len(x1),len(x2))
     
     return y
@@ -59,6 +59,7 @@ def plot(x1 = np.linspace(-5,5,500), x2 = np.linspace(-5,2.5,500), f = LocMinFun
 
     # little y creates plot of function
     y = get_grid(x1,x2,f)
+    # y = get_grid()
     # big Y => Planned Path
     Y = loc_min_func(x1,x2,f)
     #create plot
