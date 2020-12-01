@@ -40,6 +40,7 @@
 from numpy.random import uniform, choice
 from numpy import abs, zeros, log10, where, arctanh, tanh
 from root import Root
+import time  
 
 
 class BaseSMA(Root):
@@ -66,6 +67,8 @@ class BaseSMA(Root):
         return [pos, fit, weight]
 
     def train(self):
+        start_time = time.clock() 
+
         pop = [self.create_solution() for _ in range(self.pop_size)]
         #print(pop.shape)
         pop, g_best = self.get_sorted_pop_and_global_best_solution(pop, self.ID_FIT, self.ID_MIN_PROB)      # Eq.(2.6)
@@ -113,7 +116,9 @@ class BaseSMA(Root):
             if self.verbose:
                 print("> Epoch: {}, Best fit: {}".format(epoch + 1, g_best[self.ID_FIT]))
         self.solution = g_best
-        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train
+        end_time = time.clock()
+        time_elapsed = end_time - start_time
+        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed
 
 
 class OriginalSMA(Root):
@@ -139,6 +144,8 @@ class OriginalSMA(Root):
         return [pos, fit, weight]
 
     def train(self):
+        start_time = time.clock() 
+
         pop = [self.create_solution() for _ in range(self.pop_size)]
         pop, g_best = self.get_sorted_pop_and_global_best_solution(pop, self.ID_FIT, self.ID_MIN_PROB)      # Eq.(2.6)
 
@@ -187,4 +194,7 @@ class OriginalSMA(Root):
             if self.verbose:
                 print("> Epoch: {}, Best fit: {}".format(epoch + 1, g_best[self.ID_FIT]))
         self.solution = g_best
-        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train
+
+        end_time = time.clock()
+        time_elapsed = end_time - start_time
+        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed

@@ -7,6 +7,7 @@ from numpy.random import uniform, choice
 from numpy import ndarray, fabs
 from copy import deepcopy
 from root import Root
+import time  
 
 class GreyWolf(Root):
     """
@@ -44,6 +45,7 @@ class GreyWolf(Root):
         return [weights, fitness]
 
     def train(self):
+        start_time = time.clock() 
         wolves = [self.create_solution() for _ in range(self.pop_size)]
 
         wolves, g_best = self.get_sorted_pop_and_global_best_solution(wolves, self.ID_FIT, self.ID_MIN_PROB)
@@ -78,4 +80,6 @@ class GreyWolf(Root):
                 print("> Epoch: {}, Best fit: {}".format(epoch + 1, g_best[self.ID_FIT]))
         
         self.solution = g_best
-        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train
+        end_time = time.clock()
+        time_elapsed = end_time - start_time
+        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed
