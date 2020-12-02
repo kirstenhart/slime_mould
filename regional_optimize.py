@@ -7,17 +7,24 @@ from SMA import BaseSMA, OriginalSMA
 import LocMinFuncs
 import plot
 
-
-def path(obj_func, lb, ub, problem_size, verbose, epoch, pop_size,pos = np.array([-3,2])):
+#to modify starting point, update 'pos' in path() func call
+def path(obj_func, lb, ub, problem_size, verbose, epoch, pop_size,pos = np.array([-6,6])):
     p=[]
     p.append(pos)
     # resolution = 5.85
-    resolution = 5.93
+    resolution = 6.3
     bnd = np.array([ub,lb]) #bounds
-    # while True:
-    for i in range(30):
-        # m_ub = []
-        # m_lb = []
+    # while True: 
+    for i in range(40): #number of steps to take
+
+        if np.any(np.abs(pos)) > 6:
+            resolution = 5
+        # elif np.any(np.abs(pos)) > 1:
+        #     resolution = 6.3
+        else:
+            resolution = 6.3
+            
+        # regional area size
         m_ub = list((bnd/resolution + pos)[0])
         m_lb = list((bnd/resolution + pos)[1])
         # for j in range(0,2):
@@ -34,12 +41,13 @@ def path(obj_func, lb, ub, problem_size, verbose, epoch, pop_size,pos = np.array
 def main():
         
     #Ackley
-    ub = [4,4]
-    lb = [-4,-4]
+    ub = [5,5]
+    lb = [-5,-5]
     problem_size = 2
     
     ## Setting parameters
     obj_func = LocMinFuncs.ackley
+    pos = np.array([-7,7]) #starting position
     verbose = False
     epoch = 20
     pop_size = 50
@@ -47,13 +55,14 @@ def main():
     # overall global min
     md1 = BaseSMA(obj_func, lb, ub, problem_size, verbose, epoch, pop_size)
     best_pos1, best_fit1, list_loss1 = md1.train()
-    p = path(obj_func, lb, ub, problem_size, verbose, epoch, pop_size)
+    p = path(obj_func, lb, ub, problem_size, verbose, epoch, pop_size,pos)
     print('Global Best Solution:')
     print(md1.solution[0])
     print(type(md1.solution[0]))
     print(p)
     
-    plot.plot(p[:,0],p[:,1],obj_func)
+    dist = plot.plot(p[:,0],p[:,1],obj_func)
+    print("Total Distance:",dist)
     # print('\nFitness:')
     # print(md1.solution[1])
     # #print(md1.loss_train)
