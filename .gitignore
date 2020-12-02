@@ -1,0 +1,8 @@
+# Script to help Amanda w fork/pull workflow
+update_fork.sh
+
+# Mac OS
+.DS_Store
+
+# Matlab temporary files
+*.m~
