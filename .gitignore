@@ -6,3 +6,6 @@ update_fork.sh
 
 # Matlab temporary files
 *.m~
+
+# PyCharm stuff
+.idea/
