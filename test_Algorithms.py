@@ -1,5 +1,5 @@
 from SMA import BaseSMA, OriginalSMA
-from GWO_revised import GreyWolf
+from GWO import GreyWolf
 from numpy import sum, pi, exp, sqrt, cos
 
 
