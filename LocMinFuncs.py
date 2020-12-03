@@ -4,8 +4,9 @@
 
 import numpy as np
 import math
+from scipy import interpolate
 
-#Ackley function for x1,x2 ranges -40 to 40
+#Ackley function for x1,x2 ranges -5 to 5
 def ackley(args):
     # """Ackley function
 
@@ -58,6 +59,28 @@ def egg(args):
      
     y = term1 + term2
     return y
+
+def no_obstacles(args):
+    x1,x2 = args
+    x1new = np.linspace(0,1000,1001)
+    x2new = np.linspace(0,1000,1001)
+    y = np.load('no_obstacles.npy')
+    
+    f = interpolate.interp2d(x1new, x2new, y, kind='cubic')
+    z = f(x1,x2)
+    # print("x1:",x1,"x2:",x2,"z:",z)
+    return z
+
+def some_obstacles(args):
+    x1,x2 = args
+    x1new = np.linspace(0,1000,1001)
+    x2new = np.linspace(0,1000,1001)
+    y = np.load('some_obstacles.npy')
+    
+    f = interpolate.interp2d(x1new, x2new, y, kind='cubic')
+    z = f(x1,x2)
+    # print("x1:",x1,"x2:",x2,"z:",z)
+    return z
 
 # a = np.array([0.1, 0.1])
 # print(egg(a))
