@@ -43,7 +43,8 @@ plot3(end_loc(1),end_loc(2),field(end_loc(1),end_loc(2)), ...
     '.g','markersize',45)
 
 % Save field to disk
-%save('no_obstacles.mat', 'field')
+%save('no_obstacles.mat', 'field')  % note: minimum is at (90,80)!
+                                    %       maximum is at (912,922)
 
 % Create 2D representation of the field
 view(2)
