@@ -9,3 +9,6 @@ update_fork.sh
 
 # PyCharm stuff
 .idea/
+
+# Jupyter Notebook stuff
+/__pycache__/
