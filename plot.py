@@ -32,7 +32,7 @@ def get_grid(x1 = np.linspace(-5,5,31), x2 = np.linspace(-5,2.5,31), f = LocMinF
     x1_min = np.min(x1)
     x2_min = np.min(x2)
     x1 = np.linspace(x1_min,x1_max,len(x1))
-    x2 = np.linspace(x2_min,x2_max,len(x2))[::-1]
+    x2 = np.linspace(x2_min,x2_max,len(x2))#[::-1]
     # print(x2)
     # print(x1)
     for x_1 in x1:
@@ -55,20 +55,22 @@ def get_plot(x1,x2, y, Y, new_x1, new_x2):
     # fig = plt.figure()
     ax = plt.axes(projection='3d')
     #First plot the loc min func
-
+    # print("Y is this:",y)
+    # print(y.shape)
     ax.contour3D(new_x1, new_x2, y, 50, cmap='spring')
     # ax.plot_surface(x1, x2, y, cmap='spring',linewidth=0, antialiased=False)
     # ax.plot_wireframe(x1, x2, y, rstride=10, cstride=10)
     
     # Second, plot the scatter of UAV path.
     ax.scatter(x1,x2,Y,c='b')#,cmap='Blues')
-    ax.plot(x1,x2,Y,'-o')
+    # ax.plot(x1,x2,Y,'-o')
         #axis labels
     ax.set_xlabel('x2')
     ax.set_ylabel('x1')
     ax.set_zlabel('y')
-    
+    ax.view_init(30, 210)
     #get total distance
+    
 def get_dist(x1,x2,Y):
     euc = []
     for i in range(1,len(x1)):

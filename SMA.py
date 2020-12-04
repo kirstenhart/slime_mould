@@ -67,7 +67,7 @@ class BaseSMA(Root):
         return [pos, fit, weight]
 
     def train(self):
-        start_time = time.clock() 
+        start_time = time.perf_counter() 
 
         pop = [self.create_solution() for _ in range(self.pop_size)]
         #print(pop.shape)
@@ -116,7 +116,7 @@ class BaseSMA(Root):
             if self.verbose:
                 print("> Epoch: {}, Best fit: {}".format(epoch + 1, g_best[self.ID_FIT]))
         self.solution = g_best
-        end_time = time.clock()
+        end_time = time.perf_counter()
         time_elapsed = end_time - start_time
         return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed
 
@@ -144,7 +144,7 @@ class OriginalSMA(Root):
         return [pos, fit, weight]
 
     def train(self):
-        start_time = time.clock() 
+        start_time = time.perf_counter() 
 
         pop = [self.create_solution() for _ in range(self.pop_size)]
         pop, g_best = self.get_sorted_pop_and_global_best_solution(pop, self.ID_FIT, self.ID_MIN_PROB)      # Eq.(2.6)
@@ -195,6 +195,6 @@ class OriginalSMA(Root):
                 print("> Epoch: {}, Best fit: {}".format(epoch + 1, g_best[self.ID_FIT]))
         self.solution = g_best
 
-        end_time = time.clock()
+        end_time = time.perf_counter()
         time_elapsed = end_time - start_time
         return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed
