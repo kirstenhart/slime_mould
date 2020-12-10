@@ -62,24 +62,19 @@ def egg(args):
 
 def no_obstacles(args):
     x1,x2 = args
-    x1new = np.linspace(0,1000,1001)
-    x2new = np.linspace(0,1000,1001)
-    y = np.load('no_obstacles.npy')
-    
-    f = interpolate.interp2d(x1new, x2new, y, kind='cubic')
-    z = f(x1,x2)
+    y = np.load('MATLAB/no_obstacles.npy')
+    x1 = int(round(x1))
+    x2 = int(round(x2))
+    z = y[x1][x2]
     # print("x1:",x1,"x2:",x2,"z:",z)
     return z
 
 def some_obstacles(args):
     x1,x2 = args
-    x1new = np.linspace(0,1000,1001)
-    x2new = np.linspace(0,1000,1001)
-    y = np.load('some_obstacles.npy')
-    
-    f = interpolate.interp2d(x1new, x2new, y, kind='cubic')
-    z = f(x1,x2)
-    # print("x1:",x1,"x2:",x2,"z:",z)
+    y = np.load('MATLAB/some_obstacles.npy')
+    x1 = int(round(x1))
+    x2 = int(round(x2))
+    z = y[x1][x2]
     return z
 
 # a = np.array([0.1, 0.1])
