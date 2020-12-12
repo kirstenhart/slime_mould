@@ -53,11 +53,12 @@ def loc_min_func(x1,x2,f):
 #create plot
 def get_plot(x1,x2, y, Y, new_x1, new_x2):
     # fig = plt.figure()
+    fig, ax = plt.subplots(1,1)
     ax = plt.axes(projection='3d')
     #First plot the loc min func
     # print("Y is this:",y)
     # print(y.shape)
-    ax.contour3D(new_x1, new_x2, y, 50, cmap='spring')
+    cont = ax.contour3D(new_x1, new_x2, y, 50, cmap='spring')
     # ax.plot_surface(x1, x2, y, cmap='spring',linewidth=0, antialiased=False)
     # ax.plot_wireframe(x1, x2, y, rstride=10, cstride=10)
     
@@ -68,7 +69,11 @@ def get_plot(x1,x2, y, Y, new_x1, new_x2):
     ax.set_xlabel('x2')
     ax.set_ylabel('x1')
     ax.set_zlabel('y')
+    ax.legend(labels=("Path","Y"))
+    fig.colorbar(cont)
     ax.view_init(30, 210)
+    
+    
     #get total distance
     
 def get_dist(x1,x2,Y):
