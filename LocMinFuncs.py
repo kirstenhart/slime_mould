@@ -27,7 +27,7 @@ def bukin6(args):
     term1 = 100 * np.sqrt(abs(x2 - 0.01*x1**2))
     term2 = 0.01 * abs(x1+10)
     
-    y = term1 + term2;
+    y = term1 + term2
     return y
 
 # corss-in-tray for x1,x2 ranges [-10->10]
@@ -71,10 +71,12 @@ def no_obstacles(args):
 
 def some_obstacles(args):
     x1,x2 = args
-    y = np.load('MATLAB/some_obstacles.npy')
+    y = np.load('MATLAB/field_20_obs.npy')
     x1 = int(round(x1))
     x2 = int(round(x2))
-    z = y[x1][x2]
+    if x1 > 1000: x1 = 1000
+    if x2 > 1000: x2 = 1000
+    z = y[x1,x2]
     return z
 
 # a = np.array([0.1, 0.1])
