@@ -42,10 +42,12 @@ class GreyWolf(Root):
         return [weights, fitness]
 
     def train(self):
+        iters_ran = self.maxEpochs
         start_time = time.perf_counter() 
         wolves = [self.create_solution() for _ in range(self.pop_size)]
 
         wolves, g_best = self.get_sorted_pop_and_global_best_solution(wolves, self.ID_FIT, self.ID_MIN_PROB)
+        prev_loss = 10000000
 
         # need to initial Alpha, Beta, Delta, etc.
         # copy the population based on the fitness values into Alpha, Beta and Delta wolves
@@ -73,10 +75,19 @@ class GreyWolf(Root):
             wolves, g_best = self.update_sorted_population_and_global_best_solution(wolves, self.ID_MIN_PROB, g_best)
             Alpha, Beta, Delta = deepcopy(wolves[0]), deepcopy(wolves[1]), deepcopy(wolves[2])
             self.loss_train.append(g_best[self.ID_FIT])
+            loss_diff = g_best[self.ID_FIT] - prev_loss
+            prev_loss = g_best[self.ID_FIT]
+            # print(loss_diff)
+            
+            if loss_diff < 0.00001 and loss_diff > -0.00001:
+                #print("Stopped early at iteration", epoch)
+                iters_ran = epoch
+                break
+            
             if self.verbose:
                 print("> Epoch: {}, Best fit: {}".format(epoch + 1, g_best[self.ID_FIT]))
         
         self.solution = g_best
         end_time = time.perf_counter()
         time_elapsed = end_time - start_time
-        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed
+        return g_best[self.ID_POS], g_best[self.ID_FIT], self.loss_train, time_elapsed, iters_ran
