@@ -12,7 +12,7 @@ start_loc = [900,900];
 end_loc   = [80,90];
 
 %% Define a square obstacle
-obs = 500*ones(101);
+obs = 1000*ones(101);
 
 %% Place obstacles on the field
 rng('default')
@@ -41,30 +41,30 @@ end
 
 
 %% Preview the resulting field
-% Plot the field we end up with
-% for m = 1:20
-%     figure('WindowStyle','docked')
-%     colormap(jet)
-%     s=surf(fields{m},'edgealpha',0.0,'facealpha',0.2);%,'facealpha',0.2)
-%     title(sprintf('%d obstacles',m));
-%     view(2)
-%     hold on
-%     
-%     % Emphasize the starting and ending points
-%     plot3(start_loc(1),start_loc(2),field(start_loc(1),start_loc(2)),...
-%         '.r','markersize',45)
-%     plot3(end_loc(1),end_loc(2),field(end_loc(1),end_loc(2)), ...
-%         '.g','markersize',45)
-%     
-%     % Plot the "walls"
-%     plot3([1000 1000],[0 1000], [0,0],'-k','linewidth',5)
-%     plot3([0 1000],[1000 1000], [0,0],'-k','linewidth',5)
-%     plot3([0 0],[0 1000], [0,0],'-k','linewidth',5)
-%     plot3([0 1000],[0 0], [0,0],'-k','linewidth',5)
-%     
-%     %pause
-%     
-% end
+Plot the field we end up with
+for m = 1:20
+    figure('WindowStyle','docked')
+    colormap(jet)
+    s=surf(fields{m},'edgealpha',0.0,'facealpha',0.2);%,'facealpha',0.2)
+    title(sprintf('%d obstacles',m));
+    view(2)
+    hold on
+    
+    % Emphasize the starting and ending points
+    plot3(start_loc(1),start_loc(2),field(start_loc(1),start_loc(2)),...
+        '.r','markersize',45)
+    plot3(end_loc(1),end_loc(2),field(end_loc(1),end_loc(2)), ...
+        '.g','markersize',45)
+    
+    % Plot the "walls"
+    plot3([1000 1000],[0 1000], [0,0],'-k','linewidth',5)
+    plot3([0 1000],[1000 1000], [0,0],'-k','linewidth',5)
+    plot3([0 0],[0 1000], [0,0],'-k','linewidth',5)
+    plot3([0 1000],[0 0], [0,0],'-k','linewidth',5)
+    
+    pause
+    
+end
 
 %% Save the fields
 for i = 1:20
