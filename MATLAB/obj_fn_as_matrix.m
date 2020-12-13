@@ -33,7 +33,7 @@ field(1:203,1:203) = field(1:203,1:203)+valley-204.020;
 
 % Plot the field we end up with
 colormap(jet)
-surf(field,'edgealpha',0.0,'facealpha',0.0)
+surf(field,'edgealpha',0.1,'facealpha',0.0)
 title(sprintf('Start: (900, 900)\nEnd: (101, 101)'))
 hold on
 
@@ -61,7 +61,7 @@ field(550:650,550:650) = field(550:650,550:650) + obs; % center: (600,600)
 % Plot the field we end up with
 figure
 colormap(jet)
-s=surf(field,'edgealpha',0.0,'facealpha',0.0)%,'facealpha',0.2)
+s=surf(field,'edgealpha',0.1,'facealpha',0.5)%,'facealpha',0.2)
 title(sprintf('Start: (900, 900)\nEnd: (101, 101)'));
 hold on
 
@@ -72,7 +72,7 @@ plot3(end_loc(1),end_loc(2),field(end_loc(1),end_loc(2)), ...
     '.g','markersize',45)
 
 % save field to disk
-save('some_obstacles.mat','field')
+%save('some_obstacles.mat','field')
 r = rectangle('position',[150,350,100,100]);
 r.FaceColor='k'
 r = rectangle('position',[550,550,100,100])
