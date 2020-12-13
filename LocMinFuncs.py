@@ -71,13 +71,11 @@ def no_obstacles(args):
 
 def some_obstacles(args):
     x1,x2 = args
-    y = np.load('MATLAB/field_20_obs.npy')
+    y = np.load('MATLAB/field_10_obs.npy')
     x1 = int(round(x1))
     x2 = int(round(x2))
     if x1 > 1000: x1 = 1000
     if x2 > 1000: x2 = 1000
     z = y[x1,x2]
     return z
-
-# a = np.array([0.1, 0.1])
-# print(egg(a))
+    
